@@ -1,0 +1,45 @@
+Site Byte Brasil
+<<< Páginas >>>
+1 - index.php (
+   página inicial + fale conosco
+)
+2 - cursos.php
+   2.1 - listar cursos
+3 - empregos.php
+   3.1 - listar vagas
+   3.2 - candidatar_vaga.php
+   3.3 - anunciar_vaga.php
+4 - graduacao.php
+5 - pos-graduacao.php
+6 - idiomas.php
+7 - parceiros.php
+
+<<< gerenciador >>>
+>> cursos (
+   atributos(
+      1:"id",
+      2:"titulo",
+      3:"conteudos",
+      4:"duracao",
+      5:"opcoes",
+      6:"a_quem_se_destina",
+      7:"objetivo",
+      8:"imagem"
+   ),
+      CRUD()
+)
+
+>> empregos (
+   atributos(
+      1:"id",
+      2:"titulo",
+      3:"funcao",
+      4:"horario_trabalho",
+      5:"idade",
+      6:"sexo",
+      7:"requisitos_profissionais",
+      8:"local",
+      9:"salario"
+   ),
+      CRUD()
+)
