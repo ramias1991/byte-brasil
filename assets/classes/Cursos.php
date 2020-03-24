@@ -1,16 +1,11 @@
 <?php
-
-class Cursos{
-    private $pdo;
-
-    public function __construct($pdo){
-        $this->pdo = $pdo;
-    }
+require_once 'Conexao.php';
+class Cursos extends Conexao{
 
     public function getAllCursos(){
         $array = array();
         $sql = "SELECT * FROM cursos";
-        $sql = $this->pdo->query($sql);
+        $sql = $this->Conectar()->query($sql);
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();
         } else {
@@ -26,7 +21,7 @@ class Cursos{
     public function getCurso($id){
         $array = array();
         $sql = "SELECT * FROM cursos WHERE id = :id";
-        $sql = $this->pdo->prepare($sql);
+        $sql = $this->Conectar()->prepare($sql);
         $sql->bindValue(":id", $id);
         $sql->execute();
 

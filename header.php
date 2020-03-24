@@ -1,5 +1,4 @@
 <?php
-require_once 'config.php';
 require_once 'assets/classes/Cursos.php';
 require_once 'assets/classes/Vagas.php';
 $title = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

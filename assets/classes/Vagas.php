@@ -1,16 +1,12 @@
 <?php
+require_once 'Conexao.php';
 
-class Vagas {
-    private $pdo;
-
-    public function __construct($pdo){
-        $this->pdo = $pdo;
-    }
+class Vagas extends Conexao {
 
     public function getAllVagas(){
         $array = array();
         $sql = "SELECT * FROM vagas";
-        $sql = $this->pdo->query($sql);
+        $sql = $this->Conectar()->query($sql);
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();
         } else {
