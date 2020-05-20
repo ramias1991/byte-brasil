@@ -1,11 +1,15 @@
 <?php
 require_once 'header.php';
-require_once 'assets/classes/Vagas.php';
-$vagas = new Vagas($pdo);
+$vagas = new Vagas();
 $listaVagas = $vagas->getAllVagas();
 ?>
 <div class="container">
     <h1 class="mt-5">Vagas</h1>
+    <?php
+        if(count($listaVagas) <= 0){
+            echo "<h4>Nenhuma vaga listada!<h4>";
+        }
+    ?>
     <div class="row">
         <?php $c = 1;?>
         <?php foreach($listaVagas as $vaga):?>

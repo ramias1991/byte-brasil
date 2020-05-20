@@ -1,5 +1,4 @@
 <?php
-require_once 'Conexao.php';
 
 class Vagas extends Conexao {
 
@@ -10,10 +9,10 @@ class Vagas extends Conexao {
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();
         } else {
-            echo "<script>";
-            echo "alert('Nenhuma vaga encontrada!!');";
-            echo "window.location.href = 'index.php';";
-            echo "</script>";
+            //echo "<script>";
+            //echo "alert('Nenhuma vaga encontrada!!');";
+            //echo "window.location.href = 'index.php';";
+            //echo "</script>";
         }
 
         return $array;

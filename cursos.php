@@ -1,6 +1,6 @@
 <?php
 require_once 'header.php';
-$cursos = new Cursos($pdo);
+$cursos = new Cursos();
 $listaCursos = $cursos->getAllCursos();
 ?>
 

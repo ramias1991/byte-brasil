@@ -1,6 +1,6 @@
 <?php
 require_once 'header.php';
-$cursos = new Cursos($pdo);
+$cursos = new Cursos();
 if(isset($_GET['id']) && !empty($_GET['id'])){
     $id = addslashes($_GET['id']);
     $curso = $cursos->getCurso($id);

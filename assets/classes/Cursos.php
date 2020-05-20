@@ -1,10 +1,9 @@
 <?php
-require_once 'Conexao.php';
 class Cursos extends Conexao{
 
     public function getAllCursos(){
         $array = array();
-        $sql = "SELECT * FROM cursos";
+        $sql = "SELECT * FROM cursos WHERE `status` = 1";
         $sql = $this->Conectar()->query($sql);
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();

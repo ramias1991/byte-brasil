@@ -1,12 +1,18 @@
 <?php
-require_once 'assets/classes/Cursos.php';
-require_once 'assets/classes/Vagas.php';
+
+spl_autoload_register(function($class){
+	$path = 'assets/classes/' . $class . '.php';
+	if(file_exists($path)){
+		require_once $path;
+	}
+});
+
 $title = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $array = explode("/", $title);
 $title = $array[count($array) - 1];
 $title = " - " . ucfirst($txt_title = str_replace(".php", "", $title));
 if($title == ' - Index'){
-    $title = null;
+    $title = '';
 }
 
 ?>
