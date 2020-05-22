@@ -5,7 +5,7 @@ abstract class Conexao{
         try{
             $pdo = new PDO("mysql:dbname=byte_brasil;hostname=localhost", "root", "");
             return $pdo;
-        } catch(PDOExeption $e){
+        } catch(PDOException $e){
             echo $e->getMessage();
         }
     }

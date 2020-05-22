@@ -28,4 +28,20 @@ class Usuario extends Conexao {
          echo "<script>alert('E-mail não cadastrado!');</script>";
       }
    }
+
+   public function getUsuario($id){
+      $array = array();
+      $sql = "SELECT * FROM usuarios WHERE id = :id";
+      $sql = $this->Conectar()->prepare($sql);
+      $sql->bindValue(':id', $id);
+      $sql->execute();
+
+      if($sql->rowCount() > 0){
+         $array = $sql->fetch();
+      }
+
+      return $array;
+
+   }
+
 }

@@ -1,9 +1,13 @@
 <?php
 class Cursos extends Conexao{
 
-    public function getAllCursos(){
+    public function getAllCursos($ativo = array()){
         $array = array();
-        $sql = "SELECT * FROM cursos WHERE `status` = 1";
+        $params = array('1=1');
+        if(count($ativo) > 0){
+            $params[] = '`status` = 1';
+        }
+        $sql = "SELECT * FROM cursos WHERE " . implode(" AND ", $params);
         $sql = $this->Conectar()->query($sql);
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();

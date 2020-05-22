@@ -1,6 +1,6 @@
-<footer class="bg-primary text-center p-3 fixed-bottom">
+<footer class="bg-primary text-center p-3 ">
 	Fundação da empresa: 02/12/1998 <br>
-	Site Desenvolvido por <a href="http://www.facebook.com/ramiassouza" target="_blank" class="text-reset">Ramias Souza</a> <br>
+	Site Desenvolvido por <a href="https://www.linkedin.com/in/ramias-souza/" target="_blank" class="text-reset">Ramias Souza</a> <br>
 	Concórdia/SC - <?php echo date('Y'); ?>
 	</footer>
 	

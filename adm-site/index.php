@@ -2,8 +2,10 @@
 require_once '../assets/classes/Usuario.php';
 if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])){
    $id_usuario = addslashes($_SESSION['id_usuario']);
+   $usuario = new Usuario();
+   $usuarioDados = $usuario->getUsuario($id_usuario);
 } else {
-   header('Location: login.php');
+   header('Location: login');
 }
 ?>
 
@@ -20,18 +22,30 @@ if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])){
    <div class="navbar navbar-expand-lg navbar-light bg-primary container-fluid">
       <div class="container">
          <a class="navbar-brand">Byte Brasil</a>
-         <a href="logout.php" class="btn btn-danger">Sair</a>
+         <div>
+            <?php
+               if($usuarioDados['tipo'] == 1){
+            ?>
+               <a href="adicionar_usuario" class="btn btn-warning">Adicionar Usuário</a>
+            <?php
+               }
+            ?>
+            <a href="logout.php" class="btn btn-danger">Sair</a>
+         </div>
       </div>
    </div>
 
    <div class="container mt-3">
       <h3>Bem vindo(a), usuário!</h3>
-         <div class="btn-group mt-5" role="group" aria-label="Button group">
-            <a href="" class="btn btn-info btn-lg active">Cursos</a>
-            <a href="" class="btn btn-info btn-lg">Vagas</a>
-            <a href="" class="btn btn-info btn-lg">Usuários</a>
-            <a href="" class="btn btn-info btn-lg">Candidatos</a>
+         <div class="btn-group mt-5" role="group" aria-label="Button group" id="button-group">
+            <a href="javascript:;" class="btn btn-info btn-lg active" data-link="cursos.php">Cursos</a>
+            <a href="javascript:;" class="btn btn-info btn-lg" data-link="vagas.php">Vagas</a>
+            <a href="javascript:;" class="btn btn-info btn-lg" data-link="usuarios.php">Usuários</a>
+            <a href="javascript:;" class="btn btn-info btn-lg" data-link="candidatos.php">Candidatos</a>
          </div>
+   </div>
+   <div class="container mt-3">
+      <iframe src="cursos.php" frameborder="0" id="view-area" width="100%" height="1500px" scrolling="no"></iframe>
    </div>
    
    <script src="../assets/js/jquery-3.4.1.min.js"></script>

@@ -17,23 +17,24 @@ $listaVagas = $vagas->getAllVagas();
         <div class="col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    <h5 class="card-title"><?php echo $c++ . " - " . utf8_encode($vaga['titulo']); ?></h5>
+                    <h5 class="card-title"><?php echo $c++ . " - " . $vaga['titulo']; ?></h5>
                 </div>
                 <div class="card-body">
                     <strong>Função: </strong>
-                    <?php echo utf8_encode($vaga['funcao']); ?><br>
+                    <?php echo $vaga['funcao']; ?><br>
                     <strong>Horário de Trabalho: </strong>
-                    <?php echo utf8_encode($vaga['horario_trabalho']); ?><br>
+                    <?php echo $vaga['horario_trabalho']; ?><br>
                     <strong>Idade: </strong>
-                    <?php echo utf8_encode($vaga['idade']); ?><br>
+                    <?php echo $vaga['idade']; ?><br>
                     <strong>Sexo: </strong>
-                    <?php echo utf8_encode($vaga['sexo']); ?><br>
+                    <?php echo $vaga['sexo']; ?><br>
                     <strong>Requisitos Profissionais: </strong>
-                    <?php echo utf8_encode($vaga['requisitos_profissionais']); ?><br>
+                    <?php echo $vaga['requisitos_profissionais']; ?><br>
                     <strong>Local: </strong>
-                    <?php echo utf8_encode($vaga['local']); ?><br>
+                    <?php echo $vaga['local']; ?><br>
                     <strong>Salário Oferecido: </strong>
-                    <?php echo utf8_encode($vaga['salario']); ?><br>
+                    <?php echo $vaga['salario']; ?><br>
+                    <a class="btn btn-primary mt-2" href="candidatar_vaga?id_vaga=<?=$vaga['id']?>">Candidatar a Vaga</a>
                 </div>
             </div>
         </div>
