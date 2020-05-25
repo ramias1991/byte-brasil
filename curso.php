@@ -14,37 +14,40 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
 ?>
 
 <div class="container mt-3 mb-5">
-    <p><a href="cursos.php" class="link"><< Voltar</a></p>
-    <h1><?php echo $curso['titulo'];?></h1>
+    <p><a href="javascript:history.back()" class="link"><< Voltar</a></p>
+    <h2><?php echo $curso['titulo'];?></h2>
     <div class="card mb-3">
-        <div class="img-curso" style='background-image:url("<?php echo 'assets/img/' . $curso['imagem'];?>")'></div>
+        <?php if($curso['imagem'] != ''): ?>
+        <div>
+            <img src="<?='assets/img/' . $curso['imagem']?>" alt="" class="img-fluid w-100">
+        </div>
+        <?php endif; ?>
         <div class="card-body mb-1">
             <table class="table mb-1 table-hover">
                 <tbody class=>
                     <tr class="row">
-                        <td class="col-md-4"><strong>Conteúdos: </strong></td>
+                        <td class="col-md-4"><strong>Proposta do Curso: </strong></td>
+                        <td class="col-md-8"><?php echo $curso['objetivo'];?></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col-md-4"><strong>Grade Curricular: </strong></td>
                         <td class="col-md-8"><?php echo $curso['conteudos'];?></td>
                     </tr>
                     <tr class="row">
-                        <td class="col-md-4"><strong>Duração: </strong></td>
-                        <td class="col-md-8"><?php echo $curso['duracao'];?></td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-md-4"><strong>Opções: </strong></td>
+                        <td class="col-md-4"><strong>Opções de Aulas: </strong></td>
                         <td class="col-md-8"><?php echo $curso['opcoes'];?></td>
                     </tr>
                     <tr class="row">
-                        <td class="col-md-4"><strong>A quem se destina: </strong></td>
-                        <td class="col-md-8"><?php echo $curso['a_quem_se_destina'];?></td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-md-4"><strong>Objetivo: </strong></td>
-                        <td class="col-md-8"><?php echo $curso['objetivo'];?></td>
+                        <td class="col-md-4"><strong>Carga Horária: </strong></td>
+                        <td class="col-md-8"><?php echo $curso['duracao'];?></td>
                     </tr>
                 </tbody>
             </table>
 
         </div>
+    </div>
+    <div class="">
+        <h5 class="text-center">Maiores Informações: (49) 3442-4222 ou WhatsApp <a href="https://api.whatsapp.com/send?phone=+554998501422&text=Olá! Gostaria de mais informações sobre o curso de <?=$curso['titulo']?>" target="_blanck">(49) 98501-4222</a></h5>
     </div>
 </div>
 

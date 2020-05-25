@@ -1,11 +1,18 @@
 <?php
-require_once '../assets/classes/Usuario.php';
+require_once '../config.classes.php';
 $usuario = new Usuario();
+
+if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])){
+   $id_usuario = addslashes($_SESSION['id_usuario']);
+   header("Location: ../adm-site");
+}
+
 if(isset($_POST['email']) && !empty($_POST['email'])){
    $email = addslashes($_POST['email']);
    $senha = addslashes($_POST['senha']);
    $usuario->login($email, $senha);
 }
+
 ?>
 
 <!DOCTYPE html>

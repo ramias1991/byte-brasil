@@ -1,11 +1,6 @@
 <?php
 
-spl_autoload_register(function($class){
-	$path = 'assets/classes/' . $class . '.php';
-	if(file_exists($path)){
-		require_once $path;
-	}
-});
+require_once 'config.classes.php';
 
 $title = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $array = explode("/", $title);
@@ -18,7 +13,6 @@ if(strstr($title, 'id')){
 	$arrayUrl = explode("?", $title);
 	if($arrayUrl[0] == ' - Curso'){
 		$id_curso = $_GET['id'];
-		echo $id_curso;
 		$cursos = new Cursos();
 		$curso = $cursos->getCurso($id_curso);
 		$title = '- Curso de ' . $curso['titulo'];

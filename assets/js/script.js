@@ -1,14 +1,13 @@
 $(function(){
-   $("#view-area").css('overflow-y','hidden').css("height", "100vh")
-
-   $("#button-group a").bind('click', function(){
-      
-      let link = $(this).attr('data-link');
-      $("#button-group a").removeClass('active')
-      $(this).addClass('active')
-      
-      $("#view-area").attr('src', link)
-
-   });
+   $(".add_edit_curso").bind("click", function(){
+      var link = $(this).attr('href')
+      $.ajax({
+         url:link,
+         type:'GET',
+         success:function(html){
+            $(".modal-content").html(html)
+         }
+      })
+   })
 
 });

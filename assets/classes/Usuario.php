@@ -20,7 +20,7 @@ class Usuario extends Conexao {
          if($sql->rowCount() > 0){
             $array = $sql->fetch();
             $_SESSION['id_usuario'] = $array['id'];
-            header('Location: ../adm-site/index.php');
+            header('Location: cursos');
          } else {
             echo "<script>alert('Senha incorreta!!');</script>";
          }

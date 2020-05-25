@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 abstract class Conexao{
     public function Conectar(){
         try{
