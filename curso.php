@@ -27,19 +27,19 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                 <tbody class=>
                     <tr class="row">
                         <td class="col-md-4"><strong>Proposta do Curso: </strong></td>
-                        <td class="col-md-8"><?php echo $curso['objetivo'];?></td>
+                        <td class="col-md-8"><?php echo $curso['proposta_curso'];?></td>
                     </tr>
                     <tr class="row">
                         <td class="col-md-4"><strong>Grade Curricular: </strong></td>
-                        <td class="col-md-8"><?php echo $curso['conteudos'];?></td>
+                        <td class="col-md-8"><?php echo $curso['grade_curricular'];?></td>
                     </tr>
                     <tr class="row">
                         <td class="col-md-4"><strong>Opções de Aulas: </strong></td>
-                        <td class="col-md-8"><?php echo $curso['opcoes'];?></td>
+                        <td class="col-md-8"><?php echo $curso['opcoes_de_aulas'];?></td>
                     </tr>
                     <tr class="row">
                         <td class="col-md-4"><strong>Carga Horária: </strong></td>
-                        <td class="col-md-8"><?php echo $curso['duracao'];?></td>
+                        <td class="col-md-8"><?php echo $curso['carga_horaria'];?></td>
                     </tr>
                 </tbody>
             </table>

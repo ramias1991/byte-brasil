@@ -13,6 +13,11 @@ $listaCursos = $cursos->getAllCursos(array('1'), $offset, $pagCurso);
 
 <div class="container">
     <h1 class="mt-5 mb-5">Cursos</h1>
+    <?php
+        if(count($listaCursos) <= 0){
+            echo '<h4>Nenhum Curso Listado!<h4>';
+        }
+    ?>
     <table class="table table-hover mb-5">
         <tbody>
             <?php foreach($listaCursos as $curso):?>
