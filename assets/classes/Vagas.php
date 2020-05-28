@@ -12,7 +12,9 @@ class Vagas extends Conexao {
                 sexo = :sexo,
                 requisitos_profissionais = :requisitos_profissionais,
                 `local` = :local,
-                salario = :salario";
+                salario = :salario,
+                `status` = :status,
+                anunciantes_id = :anunciantes_id";
         $sql = $this->Conectar()->prepare($sql);
 
         foreach($dadosVaga as $key => $value){
@@ -20,35 +22,35 @@ class Vagas extends Conexao {
         }
         $sql->execute();
 
+
         $countVagasFin = $this->countVagas();
 
         if($countVagasFin > $countVagasIni){
-            echo "<script>";
-            echo "alert('Vaga adicionada com sucesso!');";
-            echo "window.location.href = 'vagas'";
-            echo "</script>";
+            return array(true, 'Ok');
         } else {
-            echo "<script>";
-            echo "alert('Opa!! Aconteceu algum problema!! Tente novamente!!');";
-            echo "window.location.href = 'vagas'";
-            echo "</script>";
+            return false;
         }
     }
     
-    public function getAllVagas($ativo = array(), $offset = '', $pagVagas = ''){
+    public function getAllVagas($ativo = array(), $offset, $pagVagas){
         $array = array();
-
         $status = '';
         if(count($ativo) > 0){
-            $status = "WHERE `status` = " . $ativo[0];
+            if($ativo[0] == 3){
+                $status = "WHERE `status` = 3";
+            } else if($ativo[0] == 2){
+                $status = "WHERE `status` = 2";
+            } else if($ativo[0] == 1){
+                $status = "WHERE `status` = 1";
+            }
         }
 
         $limit = '';
-        if(!empty($offset) && !empty($pagVagas)){
+        if($offset >= 0 && $pagVagas>= 0){
             $limit = " LIMIT " . $offset . ", " . $pagVagas;
         }
         
-        $sql = "SELECT * FROM vagas " . $status . $limit . " ORDER BY hora_cadastro DESC";
+        $sql = "SELECT * FROM vagas " . $status . " ORDER BY hora_cadastro DESC". $limit;
         $sql = $this->Conectar()->query($sql);
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();
@@ -100,7 +102,7 @@ class Vagas extends Conexao {
 
     public function ativarDesativarVaga($id){
         $vaga = $this->getVaga($id);
-        if($vaga['status'] == 0){
+        if($vaga['status'] == 0 || $vaga['status'] == 3){
             $sql = "UPDATE vagas SET `status` = 1 WHERE id = $id";
             $msg = 'Vaga ativada com sucesso!';
         } else if($vaga['status'] == 1){
@@ -119,7 +121,13 @@ class Vagas extends Conexao {
     public function countVagas($ativo = array()){
         $status = '';
         if(count($ativo) > 0){
-            $status = "WHERE `status` = " . $ativo[0];
+            if($ativo[0] == 3){
+                $status = "WHERE `status` = 3";
+            } else if($ativo[0] == 2){
+                $status = "WHERE `status` = 2";
+            } else if($ativo[0] == 1){
+                $status = "WHERE `status` = 1";
+            }
         }
         $sql = "SELECT count(*) as qtdVagas FROM vagas " . $status;
         $sql = $this->Conectar()->query($sql);

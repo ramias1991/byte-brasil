@@ -11,8 +11,44 @@ $offset = ($pag - 1) * $pagVagas;
 $listaVagas = $vagas->getAllVagas(array('1'), $offset, $pagVagas);
 
 ?>
+<div class="container d-flex justify-content-center">
+    <button class="btn btn-info mt-4 mr-5" type="button" data-toggle="modal" data-target="#modal-como-candidatar">Como me candidatar?</button>
+    <button class="btn btn-primary mt-4 ml-5 anuncia-vaga" type="button" data-toggle="modal" data-target="#modal-anunciar-vaga" data-link="anunciar_vaga">
+        Precisa Contratar? É GRATUITO!
+    </button>
+</div>
+<div id="modal-como-candidatar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Para se candidatar as vagas:</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="">
+                    <li class="mb-3">Você precisa comparecer pessoalmente com seus documentos ou um currículo atualizado em nosso endereço; Preencher um cadastro que tem validade por 6 meses;</li>
+                    <li class="mb-3">Agendar a participação no treinamento preparatório para o mercado de trabalho que tem duração de 2 horas; <span class="text-danger">O treinamento é obrigatório e tem um custo único de R$ 50,00</span>.</li>
+                    <p class="mb-3">E pronto! Você já pode participar da seleção de todas as vagas que estiver dentro dos critérios que a empresa exige e que você desejar.</p>
+
+                    <li class="mb-4">Se você é de fora de concórdia consulte por email como poderá participar das seleções.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-anunciar-vaga" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content modal-content-anunciar-vaga">
+            
+        </div>
+    </div>
+</div>
+
 <div class="container">
-    <h1 class="mt-5">Vagas</h1>
+    <h1 class="mt-4">Vagas</h1>
     <?php
         if(count($listaVagas) <= 0){
             echo "<h4>Nenhuma vaga listada!<h4>";
@@ -44,7 +80,7 @@ $listaVagas = $vagas->getAllVagas(array('1'), $offset, $pagVagas);
                     <?php echo $vaga['local']; ?><br>
                     <strong>Salário Oferecido: </strong>
                     <?php echo $vaga['salario']; ?><br>
-                    <a class="btn btn-primary mt-2" href="candidatar_vaga?id_vaga=<?=$vaga['id']?>">Candidatar a Vaga</a>
+                    <!-- <a class="btn btn-primary mt-2" href="candidatar_vaga?id_vaga=<?=$vaga['id']?>">Candidatar a Vaga</a> -->
                 </div>
             </div>
         </div>

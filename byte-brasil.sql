@@ -29,12 +29,11 @@ requisitos_profissionais text not null,
 salario varchar(100) not null,
 `status` int(1) default 1,
 hora_cadastro timestamp default current_timestamp,
+anunciantes_id int(11) not null default 1,
 primary key (id)
 ) engine = InnoDB, default charset = utf8;
 
-#select * from vagas;
-
-#INSERT INTO `byte_brasil`.`vagas` (`titulo`, `funcao`, `horario_trabalho`, `idade`, `sexo`, `requisitos_profissionais`, `local`, `salario`, `status`) VALUES ('Teste 3', 'Teste1', 'Algum horário', 'acima 18', 'Ambos', 'Saber trabalhar', 'CONCÓRDIA', 'Combinar', '1');
+select * from vagas;
 
 create table usuarios(
 id int(11) not null auto_increment,
@@ -46,4 +45,14 @@ primary key (id)
 ) engine = InnoDB, default charset = utf8;
 select * from usuarios;
 
+create table anunciantes(
+id int(11) not null auto_increment primary key,
+nome varchar(100) not null,
+email varchar(100) not null,
+telefone varchar(20),
+celular varchar(20)
+) engine = InnoDB, default charset = utf8;
+select * from anunciantes;
+
 INSERT INTO byte_brasil.usuarios (nome, email, senha) VALUES ('Byte Brasil', 'adm@bytebrasil.com.br', md5('adm@bytebrasil'));
+INSERT INTO byte_brasil.anunciantes (nome, email, telefone, celular) VALUES ('Byte Brasil', 'adm@bytebrasil.com.br', '49 3442-4222', '49 98501-4222');
