@@ -25,6 +25,21 @@ $(function(){
       })
    })
 
+   $('.alterar-senha').bind('click', function(e){
+      e.preventDefault();
+      
+      let link = $(this).attr('href');
+
+      $.ajax({
+         url:link,
+         type:'GET',
+         success:function(html){
+            $('.modal-content-editar-senha').html(html)
+         }
+      })
+
+   })
+
    $('.excluir-btn').bind('click', function(e){
       e.preventDefault()
       var cursoVaga = $(this).attr('data-link')

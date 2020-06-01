@@ -36,13 +36,11 @@ class Vagas extends Conexao {
         $array = array();
         $status = '';
         if(count($ativo) > 0){
-            if($ativo[0] == 3){
-                $status = "WHERE `status` = 3";
-            } else if($ativo[0] == 2){
-                $status = "WHERE `status` = 2";
-            } else if($ativo[0] == 1){
-                $status = "WHERE `status` = 1";
-            }
+            if($ativo[0] == 't'){
+                $status = "WHERE `status` <> 3";
+            } else {
+                $status = "WHERE `status` = " . $ativo[0];
+            } 
         }
 
         $limit = '';
@@ -100,13 +98,19 @@ class Vagas extends Conexao {
         echo "</script>";
     }
 
+    /* # Ativar ou Desativar uma vaga
+        STATUS DAS VAGAS
+        1 = Ativada
+        2 = Desativada
+        3 = Pendente
+    */
     public function ativarDesativarVaga($id){
         $vaga = $this->getVaga($id);
-        if($vaga['status'] == 0 || $vaga['status'] == 3){
+        if($vaga['status'] == 2 || $vaga['status'] == 3){
             $sql = "UPDATE vagas SET `status` = 1 WHERE id = $id";
             $msg = 'Vaga ativada com sucesso!';
         } else if($vaga['status'] == 1){
-            $sql = "UPDATE vagas SET `status` = 0 WHERE id = $id";
+            $sql = "UPDATE vagas SET `status` = 2 WHERE id = $id";
             $msg = 'Vaga desativada com sucesso!';
         }
 

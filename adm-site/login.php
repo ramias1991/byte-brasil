@@ -41,8 +41,10 @@ if(isset($_POST['email']) && !empty($_POST['email'])){
                      <label for="senha">Senha</label>
                      <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
                   </div>
-
-                  <input type="submit" value="Entrar" class="btn btn-primary w-100">
+                  <div class="form-group text-center">
+                     <input type="submit" value="Entrar" class="btn btn-primary w-100"> <br><br>
+                     <a href="esqueceu_senha" class="mt-5">Esqueceu Senha</a>
+                  </div>                  
                </form>
             </div>
          </div>
