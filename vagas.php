@@ -8,7 +8,7 @@ if(isset($_GET['pag']) && !empty($_GET['pag'])){
 $qtdVagas = $vagas->countVagas(array('1'));
 $pagVagas = 4;
 $offset = ($pag - 1) * $pagVagas;
-$listaVagas = $vagas->getAllVagas(array('1'), $offset, $pagVagas);
+$listaVagas = $vagas->getAllVagas(array('1'), $offset, $pagVagas, '');
 
 ?>
 <div class="container d-flex justify-content-center">
@@ -32,7 +32,7 @@ $listaVagas = $vagas->getAllVagas(array('1'), $offset, $pagVagas);
                     <li class="mb-3">Agendar a participação no treinamento preparatório para o mercado de trabalho que tem duração de 2 horas; <span class="text-danger">O treinamento é obrigatório e tem um custo único de R$ 50,00</span>.</li>
                     <p class="mb-3">E pronto! Você já pode participar da seleção de todas as vagas que estiver dentro dos critérios que a empresa exige e que você desejar.</p>
 
-                    <li class="mb-4">Se você é de fora de concórdia consulte por email como poderá participar das seleções.</li>
+                    <li class="mb-4">Se você é de fora de concórdia consulte por <a href="fale-conosco">email</a> como poderá participar das seleções.</li>
                 </ul>
             </div>
         </div>

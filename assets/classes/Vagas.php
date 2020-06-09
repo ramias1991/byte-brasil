@@ -2,6 +2,7 @@
 
 class Vagas extends Conexao {
 
+    // # Adicionar Vagas
     public function addVaga($dadosVaga){
         $countVagasIni = $this->countVagas();
         $sql = "INSERT INTO vagas SET
@@ -32,7 +33,8 @@ class Vagas extends Conexao {
         }
     }
     
-    public function getAllVagas($ativo = array(), $offset, $pagVagas){
+    // # Lista as vagas filtrando se estão ativas, inativas ou pendentes
+    public function getAllVagas($ativo = array(), $offset = '', $pagVagas = '', $id_anunciante = ''){
         $array = array();
         $status = '';
         if(count($ativo) > 0){
@@ -44,11 +46,16 @@ class Vagas extends Conexao {
         }
 
         $limit = '';
-        if($offset >= 0 && $pagVagas>= 0){
+        if((!empty($offset) || $offset == 0) && !empty($pagVagas)){
             $limit = " LIMIT " . $offset . ", " . $pagVagas;
         }
+
+        $anunciante = '';
+        if(!empty($id_anunciante) && $id_anunciante > 0){
+            $anunciante = " AND anunciantes_id = " . $id_anunciante;
+        }
         
-        $sql = "SELECT * FROM vagas " . $status . " ORDER BY hora_cadastro DESC". $limit;
+        $sql = "SELECT * FROM vagas " . $status . $anunciante . " ORDER BY hora_cadastro DESC". $limit;
         $sql = $this->Conectar()->query($sql);
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();
@@ -57,6 +64,7 @@ class Vagas extends Conexao {
         return $array;
     }
 
+    // Lista uma única vaga buscando pelo ID
     public function getVaga($id){
         $array = array();
 
@@ -74,6 +82,7 @@ class Vagas extends Conexao {
         return $array;
     }
 
+    // Edita a vaga
     public function editarVaga($dadosVaga){
         $sql = "UPDATE vagas SET
                 titulo = :titulo,
@@ -118,22 +127,36 @@ class Vagas extends Conexao {
 
         echo "<script>";
         echo "alert('".$msg."');";
-        echo "window.location.href = 'vagas'";
+        echo "window.history.back()";
         echo "</script>";
     }
 
-    public function countVagas($ativo = array()){
+    // # Deletar Vaga
+    public function excluirVaga($id_vaga){
+        $sql = "DELETE FROM vagas WHERE id = :id";
+        $sql = $this->Conectar()->prepare($sql);
+        $sql->bindValue(":id", $id_vaga);
+        $sql->execute();
+        
+        return true;
+    }
+
+    // Faz a contagem da quantidade de vagas
+    public function countVagas($ativo = array(), $id_anunciante = ''){
         $status = '';
         if(count($ativo) > 0){
-            if($ativo[0] == 3){
-                $status = "WHERE `status` = 3";
-            } else if($ativo[0] == 2){
-                $status = "WHERE `status` = 2";
-            } else if($ativo[0] == 1){
-                $status = "WHERE `status` = 1";
+            if($ativo[0] == 't'){
+                $status = " AND `status` <> 3";
+            } else {
+                $status = " AND `status` = " . $ativo[0];
             }
         }
-        $sql = "SELECT count(*) as qtdVagas FROM vagas " . $status;
+
+        $anunciante = '';
+        if(!empty($id_anunciante) && $id_anunciante > 0){
+            $anunciante = " AND anunciantes_id = " . $id_anunciante;
+        }
+        $sql = "SELECT count(*) as qtdVagas FROM vagas WHERE 1=1" . $status . $anunciante;
         $sql = $this->Conectar()->query($sql);
 
         if($sql->rowCount() > 0){
